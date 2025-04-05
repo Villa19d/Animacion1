@@ -5,6 +5,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="main.css">
+		<base href="/Animacion1/">
+		<!-- <base href="./">  -->
+		<link rel="preload" href="./build/three.module.js" as="script">
+		<link rel="preload" href="./jsm/loaders/ColladaLoader.js" as="script">
+
 	</head>
 	<body>
 
@@ -14,22 +19,23 @@
 			Elf Girl by <a href="https://sketchfab.com/yellow09" target="_blank" rel="noopener">halloween</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC Attribution</a>
 		</div>
 
+		
 		<script type="importmap">
 			{
-				"imports": {
-					"three": "../build/three.module.js",
-					"three/addons/": "./jsm/"
-				}
+			  "imports": {
+				"three": "./build/three.module.js",
+				"three/addons/": "./jsm/"
+			  }
 			}
-		</script>
-
+			</script>
 		<script type="module">
 
-			import * as THREE from 'three';
+import * as THREE from './build/three.module.js';
+import { ColladaLoader } from './jsm/loaders/ColladaLoader.js';
 
 			import Stats from 'three/addons/libs/stats.module.js';
 
-			import { ColladaLoader } from 'three/addons/loaders/ColladaLoader.js';
+			
 
 			let container, stats, clock;
 			let camera, scene, renderer, elf;
@@ -59,11 +65,9 @@
 				// collada
 
 				const loader = new ColladaLoader( loadingManager );
-				loader.load( './models/collada/elf/elf.dae', function ( collada ) {
-
-					elf = collada.scene;
-
-				} );
+				loader.load('./models/collada/elf/elf.dae', function(collada) {
+  elf = collada.scene;
+});
 
 				//
 
